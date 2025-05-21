@@ -1,50 +1,47 @@
-# Welcome to your Expo app 👋
+# Bem vindo ao aplicativo Canarin
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+O projeto Canarin foi desenvolvido com [`create-expo-app`](https://www.npmjs.com/package/create-expo-app), tecnologia essa criada pela [Expo](https://expo.dev). 
 
-## Get started
+O intuito do projeto é de construir um aplicativo simples com comunicação bidirecional entre dispositivos, semi-desconectado e unificado para usuários finais e motoristas de ônibus(controladores do fluxo e trajeto).
 
-1. Install dependencies
+## Como Inicializar?
+
+1. Instale as dependencias
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. Inicie o Projeto
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+No output, você verá as seguintes oções de escolha:
 
 - [development build](https://docs.expo.dev/develop/development-builds/introduction/)
 - [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- [Expo Go](https://expo.dev/go)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Escolha qual é compatível para você e/ou lhe agrada mais.
 
-## Get a fresh project
+## Documentação
 
-When you're ready, run:
+Em caso de dúvidas e interesses mais profundos na metodologia de nosso desenvolvimento, abaixo estão disponibilizadas duas referências de estudo:
 
-```bash
-npm run reset-project
-```
+- [Documentação Expo](https://docs.expo.dev/): Aprenda o básico, ou vá para tópicos avançados com os [guias](https://docs.expo.dev/guides).
+- [Aprenda um Tutorial Expo](https://docs.expo.dev/tutorial/introduction/): Siga um tutorial passo-a-passo onde você poderá criar um projeto que execute em Android, iOS, ou até de forma web.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Equipe
+A equipe envolvida neste projeto é constituída por alunos da 6ª Fase (20251) do curso de Engenharia de Software do Centro Universitário Católica SC de Jaraguá do Sul.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+<div align="center">
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/HigorAz"><img loading="lazy" src="https://avatars.githubusercontent.com/u/141787745?v=4" width="115"><br><sub>Higor Azevedo</sub></a></td>
+    <td align="center"><a href="https://github.com/AoiteFoca"><img loading="lazy" src="https://avatars.githubusercontent.com/u/141975272?v=4" width="115"><br><sub>Nathan Cielusinski</sub></a></td>
+    <td align="center"><a href="https://github.com/MrNicolass"><img loading="lazy" src="https://avatars.githubusercontent.com/u/80847876?v=4" width="115"><br><sub>Nicolas Gustavo Conte</sub></a></td>
+  </tr>
+</div>
