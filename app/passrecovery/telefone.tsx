@@ -5,26 +5,27 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 
 export default function EnterPhoneScreen() {
   const router = useRouter();
-
+  
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.backBtn} onPress={() => router.replace('/')}>
         <Ionicons name="arrow-back" size={24} color="#fff" />
       </TouchableOpacity>
 
-      <Text style={styles.title}>Enter Your Phone{'\n'}Number</Text>
+      <Text style={styles.title}>Coloque seu número de telefone</Text>
 
       <View style={styles.inputContainer}>
         <Ionicons name="call-outline" size={20} color="#fff" style={styles.icon} />
-        <TextInput placeholder="+00 0000000000" placeholderTextColor="#aaa" style={styles.input} keyboardType="phone-pad" />
+        <TextInput placeholder="+55 (00) 000000000" placeholderTextColor="#aaa" style={styles.input} keyboardType="phone-pad" />
       </View>
 
       <TouchableOpacity style={styles.button} onPress={() => router.push('/passrecovery/recovercode')}>
-        <Text style={styles.buttonText}>Verification</Text>
+        <Text style={styles.buttonText}>Verifique o Número</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={[styles.button, styles.secondaryButton]}>
-        <Text style={styles.buttonText}>Later</Text>
+      {/* Sem Função por enquanto */}
+      <Text style={styles.buttonText}>Cancelar</Text>
       </TouchableOpacity>
     </View>
   );
