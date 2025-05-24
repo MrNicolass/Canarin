@@ -56,6 +56,10 @@ export default function PerfilScreen() {
         <Text style={styles.buttonText}>Mostrar Localização</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity style={styles.button} onPress={() => router.replace('/passrecovery/telefone')}>
+        <Text style={styles.buttonText}>Resetar Senha</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity style={styles.button} onPress={() => router.replace('/')}>
         <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
