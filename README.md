@@ -40,6 +40,7 @@ A equipe envolvida neste projeto é constituída por alunos da 6ª Fase (20251) 
 <div align="center">
 <table>
   <tr>
+    <td align="center"><a href="https://github.com/Gabrid-0"><img loading="lazy" src="https://avatars.githubusercontent.com/u/148984768?v=4" width="115"><br><sub>Gabriel de Oliveira</sub></a></td>
     <td align="center"><a href="https://github.com/HigorAz"><img loading="lazy" src="https://avatars.githubusercontent.com/u/141787745?v=4" width="115"><br><sub>Higor Azevedo</sub></a></td>
     <td align="center"><a href="https://github.com/AoiteFoca"><img loading="lazy" src="https://avatars.githubusercontent.com/u/141975272?v=4" width="115"><br><sub>Nathan Cielusinski</sub></a></td>
     <td align="center"><a href="https://github.com/MrNicolass"><img loading="lazy" src="https://avatars.githubusercontent.com/u/80847876?v=4" width="115"><br><sub>Nicolas Gustavo Conte</sub></a></td>
