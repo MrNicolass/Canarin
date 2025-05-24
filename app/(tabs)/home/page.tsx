@@ -4,6 +4,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { scale, verticalScale } from 'react-native-size-matters';
 
 export default function HomeScreen() {
+  const userName = 'Canarinho Junior';
   const router = useRouter();
 
   return (
@@ -15,7 +16,7 @@ export default function HomeScreen() {
         />
       </View>
 
-      <Text style={styles.title}>Bem vindo [nome do usuário]!</Text>
+      <Text style={styles.title}>Bem vindo {userName}!</Text>
       <Text style={styles.brand}>CanarinhoGo</Text>
 
       <Text style={styles.subtitle}>
