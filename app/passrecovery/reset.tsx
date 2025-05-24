@@ -8,6 +8,10 @@ export default function ResetPasswordScreen() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.backBtn} onPress={() => router.replace('/')}>
+        <Ionicons name="arrow-back" size={24} color="#fff" />
+      </TouchableOpacity>
+
       <Text style={styles.title}>Reset Your{'\n'}Password</Text>
 
       <View style={styles.inputContainer}>

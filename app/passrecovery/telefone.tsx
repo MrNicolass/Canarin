@@ -8,6 +8,10 @@ export default function EnterPhoneScreen() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.backBtn} onPress={() => router.replace('/')}>
+        <Ionicons name="arrow-back" size={24} color="#fff" />
+      </TouchableOpacity>
+
       <Text style={styles.title}>Enter Your Phone{'\n'}Number</Text>
 
       <View style={styles.inputContainer}>

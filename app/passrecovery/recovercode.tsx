@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
@@ -8,6 +9,10 @@ export default function VerifyCodeScreen() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.backBtn} onPress={() => router.replace('/')}>
+        <Ionicons name="arrow-back" size={24} color="#fff" />
+      </TouchableOpacity>
+
       <Text style={styles.title}>Verify Phone Number</Text>
       <Text style={styles.subtitle}>We Have Sent Code To Your Phone Number</Text>
       <Text style={styles.phone}>+00 0000000000</Text>
