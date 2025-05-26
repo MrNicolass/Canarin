@@ -1,18 +1,77 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import {
+  Animated,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  Vibration,
+  View
+} from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { scale, verticalScale } from 'react-native-size-matters';
 
 export default function DriverScreen() {
+  const floatAnim = useRef(new Animated.Value(0)).current;
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+
+  // Animação contínua de flutuação
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(floatAnim, {
+          toValue: -5,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+        Animated.timing(floatAnim, {
+          toValue: 5,
+          duration: 2000,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, []);
+
+  const handleTap = () => {
+    // Vibrar o celular (vibração curta)
+    Vibration.vibrate(100);
+
+    // Animação de pulso (aumenta e volta)
+    Animated.sequence([
+      Animated.timing(pulseAnim, {
+        toValue: 1.2,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+      Animated.timing(pulseAnim, {
+        toValue: 1,
+        duration: 150,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.middleContent}>
           <Text style={styles.title}>Passe o cartão</Text>
-          <Image
-            source={require('@/assets/images/logo.png')}
-            style={styles.logo}
-          />
+
+          <TouchableWithoutFeedback onPress={handleTap}>
+            <Animated.Image
+              source={require('@/assets/images/logo.png')}
+              style={[
+                styles.logo,
+                {
+                  transform: [
+                    { translateY: floatAnim },
+                    { scale: pulseAnim },
+                  ],
+                },
+              ]}
+            />
+          </TouchableWithoutFeedback>
         </View>
 
         <View style={styles.footer}>

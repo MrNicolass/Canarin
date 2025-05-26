@@ -41,10 +41,10 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="driver/page"
+        name="perfil"
         options={{
-          title: 'Motorista',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="arrow.up.to.line" color={color} />,
+          title: 'Perfil',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
         }}
       />
     </Tabs>
