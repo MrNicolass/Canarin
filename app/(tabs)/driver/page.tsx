@@ -1,32 +1,53 @@
 import React, { useEffect, useRef } from 'react';
 import {
   Animated,
+  Easing,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
   Vibration,
-  View
+  View,
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { scale, verticalScale } from 'react-native-size-matters';
 
 export default function DriverScreen() {
-  const floatAnim = useRef(new Animated.Value(0)).current;
   const pulseAnim = useRef(new Animated.Value(1)).current;
+  const rippleAnim = useRef(new Animated.Value(0)).current;
 
-  // Animação contínua de flutuação
+  // Animação contínua de pulso (zoom sutil)
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(floatAnim, {
-          toValue: -5,
-          duration: 2000,
+        Animated.timing(pulseAnim, {
+          toValue: 1.1,
+          duration: 1000,
+          easing: Easing.inOut(Easing.ease),
           useNativeDriver: true,
         }),
-        Animated.timing(floatAnim, {
-          toValue: 5,
-          duration: 2000,
+        Animated.timing(pulseAnim, {
+          toValue: 1,
+          duration: 1000,
+          easing: Easing.inOut(Easing.ease),
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+  }, []);
+
+  // Animação contínua de "gota"
+  useEffect(() => {
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(rippleAnim, {
+          toValue: 1,
+          duration: 1800,
+          useNativeDriver: true,
+        }),
+        Animated.timing(rippleAnim, {
+          toValue: 0,
+          duration: 0,
           useNativeDriver: true,
         }),
       ])
@@ -34,10 +55,8 @@ export default function DriverScreen() {
   }, []);
 
   const handleTap = () => {
-    // Vibrar o celular (vibração curta)
     Vibration.vibrate(100);
 
-    // Animação de pulso (aumenta e volta)
     Animated.sequence([
       Animated.timing(pulseAnim, {
         toValue: 1.2,
@@ -52,6 +71,16 @@ export default function DriverScreen() {
     ]).start();
   };
 
+  const rippleScale = rippleAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 2.5],
+  });
+
+  const rippleOpacity = rippleAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0.3, 0],
+  });
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -59,18 +88,27 @@ export default function DriverScreen() {
           <Text style={styles.title}>Passe o cartão</Text>
 
           <TouchableWithoutFeedback onPress={handleTap}>
-            <Animated.Image
-              source={require('@/assets/images/logo.png')}
-              style={[
-                styles.logo,
-                {
-                  transform: [
-                    { translateY: floatAnim },
-                    { scale: pulseAnim },
-                  ],
-                },
-              ]}
-            />
+            <View style={styles.logoWrapper}>
+              {/* Efeito de "gota" sutil atrás da logo */}
+              <Animated.View
+                style={[
+                  styles.ripple,
+                  {
+                    opacity: rippleOpacity,
+                    transform: [{ scale: rippleScale }],
+                  },
+                ]}
+              />
+              <Animated.Image
+                source={require('@/assets/images/logo.png')}
+                style={[
+                  styles.logo,
+                  {
+                    transform: [{ scale: pulseAnim }],
+                  },
+                ]}
+              />
+            </View>
           </TouchableWithoutFeedback>
         </View>
 
@@ -104,6 +142,17 @@ const styles = StyleSheet.create({
     fontSize: RFValue(28),
     color: '#fff',
     fontWeight: '600',
+  },
+  logoWrapper: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  ripple: {
+    position: 'absolute',
+    width: scale(130),
+    height: scale(130),
+    borderRadius: scale(160 / 2),
+    backgroundColor: 'white',
   },
   logo: {
     width: scale(120),
