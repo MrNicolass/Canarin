@@ -20,10 +20,10 @@ export default function HomeScreen() {
       <Text style={styles.brand}>CanarinhoGo</Text>
 
       <Text style={styles.subtitle}>
-        {"\n"}Utilize o botão abaixo para utilizar o ônibus.
+        {"\n"}Clique no botão abaixo para utilizar o ônibus.
       </Text>
 
-      <TouchableOpacity style={styles.button} onPress={() => router.push('/')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/driver/page')}>
         <Text style={styles.buttonText}>Passar Cartão</Text>
       </TouchableOpacity>
     </View>

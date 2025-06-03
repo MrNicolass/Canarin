@@ -21,7 +21,7 @@ export default function PreferenciasScreen() {
         <Text style={styles.buttonText}>Idioma</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/perfil')}>
+      <TouchableOpacity style={styles.backButton} onPress={() => router.push('/profile/perfil')}>
         <Text style={styles.buttonText}>Voltar</Text>
       </TouchableOpacity>
     </View>

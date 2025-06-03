@@ -60,7 +60,7 @@ export default function PerfilScreen() {
         <Text style={styles.buttonText}>Resetar Senha</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => router.replace('/')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.replace('/home/page')}>
         <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
     </View>
