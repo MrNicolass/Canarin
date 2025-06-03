@@ -52,7 +52,7 @@ export default function ResetPasswordScreen() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.button} onPress={() => router.replace('/')}>
+      <TouchableOpacity style={styles.button} onPress={() => router.replace('/home/page')}>
         <Text style={styles.buttonText}>Resetar Senha</Text>
       </TouchableOpacity>
     </View>
