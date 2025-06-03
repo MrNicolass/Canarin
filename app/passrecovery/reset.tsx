@@ -10,7 +10,7 @@ export default function ResetPasswordScreen() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backBtn} onPress={() => router.replace('/')}>
+      <TouchableOpacity style={styles.backBtn} onPress={() => router.replace('/home/page')}>
         <Ionicons name="arrow-back" size={24} color="#fff" />
       </TouchableOpacity>
 
