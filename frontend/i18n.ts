@@ -3,6 +3,7 @@ import pt_BR from '@/locales/pt_BR.json';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+//Module used only to inject language uspport
 i18n.use(initReactI18next).init({
   resources: {
     en_US: { translation: en_US },

@@ -1,19 +1,20 @@
-import { Link } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 import { ThemedText } from '@/components/base/text/BaseText';
 import { BaseView } from '@/components/base/view/BaseView';
+import { useRouter } from 'expo-router';
 
 export default function NotFoundScreen() {
   const { t } = useTranslation();
+  const router = useRouter();
 
   return (
     <BaseView style={styles.container}>
       <ThemedText type="title">{t('notFound')}</ThemedText>
-      <Link href="/" style={styles.link}>
+      <TouchableOpacity style={styles.link} onPress={() => router.push('/(tabs)/home/page')}>
         <ThemedText type="link">Go to home screen!</ThemedText>
-      </Link>
+      </TouchableOpacity>
     </BaseView>
   );
 }
