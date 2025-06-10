@@ -1,7 +1,7 @@
 import { Text } from 'react-native';
 
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { BaseTextProps } from '@/types/BaseTextProps';
+import { BaseTextProps } from '@/models/types/BaseTextProps';
 import styles from './BaseText.styles';
 
 export function ThemedText({

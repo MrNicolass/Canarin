@@ -11,9 +11,9 @@ export default function NotFoundScreen() {
 
   return (
     <BaseView style={styles.container}>
-      <ThemedText type="title">{t('notFound')}</ThemedText>
+      <ThemedText type="title">{t('notFound.title')}</ThemedText>
       <TouchableOpacity style={styles.link} onPress={() => router.push('/(tabs)/home/page')}>
-        <ThemedText type="link">Go to home screen!</ThemedText>
+        <ThemedText type="link">{t("notFound.link")}</ThemedText>
       </TouchableOpacity>
     </BaseView>
   );

@@ -1,7 +1,6 @@
 {
-  "welcome": "Canarin!",
-  "notFound": "Está página não existe.",
-  "step1": "Passo 1: Experimente",
-  "step2": "Passo 2: Explore",
-  "step3": "Passo 3: Comece do zero"
+  "notFound": {
+    "title": "Está página não existe",
+    "link": "Ir para página principal!"
+  }
 }
