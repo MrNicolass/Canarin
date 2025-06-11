@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model UserType {
+  id       Int    @id @default(autoincrement()) 
+  userType String
+
+  @@map("userType")
+}
+
+model User {
+  id         Int     @id @default(autoincrement())
+  login      String  @unique
+  password   String  
+  userTypeId Int     
+  personId   Int?    @unique
+  active     Boolean @default(true)
+
+  @@map("user")
+}
+
+model PersonPhones {
+  id            Int     @id @default(autoincrement())
+  phone         String? 
+  businessPhone String? 
+  cellPhone     String?
+
+  @@map("userPhones")
+}
+
+model Person {
+  id              Int       @id @default(autoincrement())
+  cpf             String    @unique
+  rg              String?   @unique
+  name            String       
+  lastName        String    
+  birthDate       DateTime? 
+  email           String?   
+  phonesId        Int?      @unique
+
+  @@map("person")                    
+}
