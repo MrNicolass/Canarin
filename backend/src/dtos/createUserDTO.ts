@@ -1,4 +1,5 @@
-import { IsEmpty, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsObject, IsOptional, IsString } from "class-validator";
+import { CreatePersonDto } from "./createPersonDTO";
 
 export class CreateUserDto {
     @IsNotEmpty()
@@ -11,4 +12,12 @@ export class CreateUserDto {
     @IsNotEmpty()
     @IsNumber()
     userTypeId: number;
+    
+    @IsOptional()
+    @IsObject()
+    person?: CreatePersonDto;
+    
+    @IsOptional()
+    @IsBoolean()
+    active?: boolean;
 }

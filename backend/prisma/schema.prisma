@@ -30,7 +30,7 @@ model PersonPhones {
   id            Int     @id @default(autoincrement())
   phone         String? 
   businessPhone String? 
-  cellPhone     String?
+  cellPhone     String
 
   @@map("userPhones")
 }

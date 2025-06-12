@@ -29,7 +29,7 @@ export default function PerfilScreen() {
       const locationDetails = `${place.name ?? ''}, ${place.street ?? ''}, ${place.subregion ?? ''}, ${place.city ?? ''}, ${place.region ?? ''}`;
 
       Alert.alert('Localização', `${userName} está em: ${locationDetails}!`);
-    } catch (error) {
+    } catch(error) {
       Alert.alert('Erro', 'Não foi possível obter a localização.');
     }
   };
