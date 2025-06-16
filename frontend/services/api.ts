@@ -1,7 +1,10 @@
 import axios from "axios";
 import { Platform } from "react-native";
 
-const YOUR_LOCAL_IP_ADDRESS = "192.168.1.8"; // <-- SUBSTITUA ESTE VALOR
+const baseURL =
+  Platform.OS === "android"
+    ? process.env.EXPO_PUBLIC_SERVER_URL
+    : "http://localhost:3000/";
 
 const baseURL = `http://${YOUR_LOCAL_IP_ADDRESS}:3000/`;
 
