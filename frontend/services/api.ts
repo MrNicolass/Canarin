@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Platform } from "react-native";
 
+const YOUR_LOCAL_IP_ADDRESS = '' //Add IP of backend-server
+
 const baseURL =
   Platform.OS === "android"
     ? process.env.EXPO_PUBLIC_SERVER_URL
