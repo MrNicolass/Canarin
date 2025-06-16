@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model UserType {
+  id       Int    @id @default(autoincrement())
+  userType String
+
+  users User[] // Relation to User model
+
+  @@map("userType")
+}
+
+model User {
+  id         Int     @id @default(autoincrement())
+  login      String  @unique
+  password   String
+  userTypeId Int
+  personId   Int?    @unique
+  active     Boolean @default(true)
+
+  // Relations
+  userType        UserType          @relation(fields: [userTypeId], references: [id])
+  person          Person?           @relation(fields: [personId], references: [id])
+  locationHistory LocationHistory[] // Relation to LocationHistory
+
+  @@map("user")
+}
+
+model PersonPhones {
+  id            Int     @id @default(autoincrement())
+  phone         String?
+  businessPhone String?
+  cellPhone     String?
+
+  Person Person? // Relation to Person model
+
+  @@map("userPhones")
+}
+
+model Person {
+  id        Int      @id @default(autoincrement())
+  cpf       String   @unique
+  rg        String?  @unique
+  name      String
+  lastName  String
+  birthDate DateTime?
+  email     String?
+  phonesId  Int?     @unique
+
+  // Relations
+  user   User?
+  phones PersonPhones? @relation(fields: [phonesId], references: [id])
+
+  @@map("person")
+}
+
+model LocationHistory {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  timestamp    DateTime @default(now())
+  latitude     Float
+  longitude    Float
+  street       String?
+  neighborhood String?
+  city         String?
+  state        String?
+  postalCode   String?
+  country      String?
+
+  // Relation to User
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("location_history")
+}
