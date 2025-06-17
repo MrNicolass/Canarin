@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Image } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
 import { IconSymbol } from '@/components/ui/IconSymbol';
@@ -20,7 +20,6 @@ export default function TabLayout() {
         tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
-            // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
           default: {},
@@ -30,30 +29,35 @@ export default function TabLayout() {
         name="home/page"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: () => <Image source={require('@/assets/images/icons/homepng.png')} style={{ width: 28, height: 28 }} />,
         }}
       />
       <Tabs.Screen
         name="dashboard/page"
         options={{
           title: 'Dashboard',
-          tabBarIcon: ({ color, focused }) => (
-            <IconSymbol size={28} name="chart.bar.fill" color={color} />
-          ),
+          tabBarIcon: () => <Image source={require('@/assets/images/icons/dashboard.png')} style={{ width: 28, height: 28 }} />
         }}
       />
       <Tabs.Screen
-        name="index"
+        name="driver/page"
         options={{
-          title: 'Index',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Entrada',
+          tabBarIcon: () => <Image source={require('@/assets/images/icons/card.png')} style={{ width: 28, height: 28 }} />,
         }}
       />
       <Tabs.Screen
-        name="perfil"
+        name="account/login"
+        options={{
+          title: 'Login',
+          tabBarIcon: () => <Image source={require('@/assets/images/icons/profile.png')} style={{ width: 28, height: 28 }} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile/perfil"
         options={{
           title: 'Perfil',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
+          tabBarIcon: () => <Image source={require('@/assets/images/icons/settings.png')} style={{ width: 28, height: 28 }} />,
         }}
       />
     </Tabs>

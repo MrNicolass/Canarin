@@ -1,7 +1,9 @@
+import UserService from '@/services/UserService';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
+  Alert,
     StyleSheet,
     Text,
     TextInput,
@@ -10,12 +12,19 @@ import {
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { scale, verticalScale } from 'react-native-size-matters';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginScreen() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  async function handleLogin() {
+    const user = await UserService.getUserByLogin(email);
+    AsyncStorage.setItem('userId', String(user.data.message.id));
+    Alert.alert(`Bem vindo usuário de ID ${await AsyncStorage.getItem('userId')}!`);
+  }
 
   return (
     <View style={styles.container}>
@@ -57,7 +66,7 @@ export default function LoginScreen() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.loginButton}>
+      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
         <Text style={styles.loginText}>Entrar</Text>
       </TouchableOpacity>
 
@@ -65,7 +74,7 @@ export default function LoginScreen() {
       style={styles.registerLink}
       onPress={() => router.push('/account/criarconta')}
     >
-      Ainda não tem uma conta? <Text style={styles.registerBold}>Cadastrar</Text>
+      Ainda não tem uma conta? <Text style={styles.registerBold}>Cadastre-se!</Text>
     </Text>
 
       <Text style={styles.altText}>Ou continue com</Text>

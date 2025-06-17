@@ -1,12 +1,15 @@
+import CreateUserDTO from '@/models/interfaces/CreateUserDTO';
+import UserService from '@/services/UserService';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  Alert,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { scale, verticalScale } from 'react-native-size-matters';
@@ -14,9 +17,34 @@ import { scale, verticalScale } from 'react-native-size-matters';
 export default function RegisterScreen() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [cellPhone, setCellPhone] = useState('');
+
+  const handleRegister = async () => {
+    if(!email || !password || !name || !lastName || !cpf || !cellPhone) {
+      Alert.alert('Há campos vazios!');
+    }
+
+    const userDTO: CreateUserDTO = {
+      login: email,
+      password: password,
+      person: {
+        name: name,
+        lastName: lastName,
+        cpf: cpf,
+        phones: {
+          cellPhone: cellPhone
+        }
+      }
+    }
+    
+    const user = await UserService.createUser(userDTO);
+    Alert.alert(user.data.message)
+  }
 
   return (
     <View style={styles.container}>
@@ -26,17 +54,6 @@ export default function RegisterScreen() {
       </TouchableOpacity>
 
       <Text style={styles.title}>Crie sua conta</Text>
-
-      <View style={styles.inputContainer}>
-        <Ionicons name="person-outline" size={20} color="#ccc" />
-        <TextInput
-          placeholder="Nome"
-          placeholderTextColor="#ccc"
-          value={name}
-          onChangeText={setName}
-          style={styles.input}
-        />
-      </View>
 
       <View style={styles.inputContainer}>
         <Ionicons name="mail-outline" size={20} color="#ccc" />
@@ -69,11 +86,58 @@ export default function RegisterScreen() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.registerButton}>
+      <View style={styles.inputContainer}>
+        <Ionicons name="person-outline" size={20} color="#ccc" />
+        <TextInput
+          placeholder="Nome"
+          placeholderTextColor="#ccc"
+          value={name}
+          onChangeText={setName}
+          style={styles.input}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="person-outline" size={20} color="#ccc" />
+        <TextInput
+          placeholder="Sobrenome"
+          placeholderTextColor="#ccc"
+          value={lastName}
+          onChangeText={setLastName}
+          style={styles.input}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="person-outline" size={20} color="#ccc" />
+        <TextInput
+          placeholder="CPF"
+          placeholderTextColor="#ccc"
+          value={cpf}
+          onChangeText={setCpf}
+          style={styles.input}
+        />
+      </View>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="person-outline" size={20} color="#ccc" />
+        <TextInput
+          placeholder="Celular"
+          placeholderTextColor="#ccc"
+          value={cellPhone}
+          onChangeText={setCellPhone}
+          style={styles.input}
+        />
+      </View>
+
+      <TouchableOpacity style={styles.registerButton} onPress={handleRegister}>
         <Text style={styles.registerText}>Registrar</Text>
       </TouchableOpacity>
 
-      <Text style={styles.loginLink}>
+      <Text
+        style={styles.loginLink}
+        onPress={() => router.push('/account/login')}
+      >
         Já possui uma conta? <Text style={styles.loginBold}>Entrar</Text>
       </Text>
 
@@ -108,6 +172,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: RFValue(24),
     fontWeight: '700',
+    alignSelf: 'center',
     marginBottom: verticalScale(20),
   },
   inputContainer: {
@@ -117,8 +182,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     paddingHorizontal: scale(12),
-    paddingVertical: verticalScale(10),
-    marginBottom: verticalScale(12),
+    paddingVertical: verticalScale(8),
+    marginBottom: verticalScale(8),
   },
   input: {
     flex: 1,

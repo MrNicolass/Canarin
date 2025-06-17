@@ -15,6 +15,7 @@ import { scale, verticalScale } from 'react-native-size-matters';
 
 import { getCurrentLocationAndAddress } from '@/services/location.service';
 import api from '@/services/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function DriverScreen() {
   const pulseAnim = useRef(new Animated.Value(1)).current;
@@ -70,12 +71,14 @@ export default function DriverScreen() {
     }
   };
 
-  const handleSimulatedNfcScan = () => {
+  const handleSimulatedNfcScan = async () => {
     if (isLoading) return;
 
-    const fakeUserId = 1; 
+    const fakeUserId = Number(await AsyncStorage.getItem('userId')) || 0; 
     
-    processCheckIn(fakeUserId);
+    if(fakeUserId != 0) {
+      processCheckIn(Number(fakeUserId));
+    }
   };
 
   // --- Funções de animação e renderização ---

@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Logger, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Logger, Post, Res, Query } from '@nestjs/common';
 import { CreateUserDto } from 'src/dtos/createUserDTO';
 import { UsersService } from './users.service';
 import { Response } from 'express';
@@ -26,4 +26,22 @@ export class UsersController {
         }
     }
 
+    @Get('getUser')
+    async getUserByLogin(@Query('login') login: string, @Res() res: Response): Promise<any> {
+        try {
+            Logger.log('Iniciando busca de usuário...');
+
+            const result = await this.userService.findUserByLogin(login);
+            return res.status(HttpStatus.OK).json({
+                success: true,
+                message: result,
+            });
+        } catch(error) {
+            return res.status(HttpStatus.BAD_REQUEST).json({
+                success: false,
+                message: 'Não foi possível encontrar o usuário!',
+                error: error.message,
+            });
+        }
+    }
 }
